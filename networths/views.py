@@ -12,10 +12,14 @@ from .serializers.common import NetworthSerializer
 
 # Permissions
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
-from lib.permissions import IsOwnerOrReadOnly
+from lib.permissions import IsOwnerOrReadOnly, IsOwner
 
 class NetworthView(GenericAPIView):
-  pass
+  queryset=Networth.objects.all()
+  serializer_class=NetworthSerializer
 
 class NetworthListView( NetworthView, UserListCreateAPIView):
-  permission_classes= [IsAuthenticated]
+  permission_classes= [IsOwner]
+
+class NetworthDetailView(NetworthView, UserListCreateAPIView):
+  permission_classes= [IsOwner]
