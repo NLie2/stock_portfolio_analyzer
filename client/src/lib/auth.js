@@ -3,7 +3,7 @@ export const getToken = ( tokenName ) => {
 }
 
 export const setToken = ( tokenName, token) => {
-  localStorage.setItme(tokenName, token)
+  localStorage.setItem(tokenName, token)
 }
 
 export const isTokenValid = ( tokenName ) => {

@@ -1,16 +1,15 @@
 import axios from 'axios'
-
 import { getToken, setToken, isTokenValid } from './auth'
 
 const axiosAuth = axios.create()
 
-axiosAuth.interceptors.create( async (config) => {
+axiosAuth.interceptors.request.use( async (config) => {
   
   //check if token is valid 
-  if (!isTokenValid('accessToken')) {
-    if (isTokenValid('refreshToken')) {
+  if (!isTokenValid('access-token')) {
+    if (isTokenValid('refresh-token')) {
       //Make an request to get new access token
-      const { data } = await axios.post('/api/auth/refresh', {
+      const { data } = await axios.post('/api/auth/refresh/', {
         refresh: getToken('refresh-token'), 
       })
       //save token to token variable
@@ -20,6 +19,16 @@ axiosAuth.interceptors.create( async (config) => {
       throw new axios.Cancel('Session expired. Please sign in again. ')
     }
   }
+
+  //Add authorization header before sending
+  config.headers.Authorization = `Bearer ${getToken('access-token')}`
+
+
+  return config
 })
 
 export default axiosAuth
+
+
+
+
