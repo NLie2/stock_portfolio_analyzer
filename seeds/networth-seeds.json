@@ -1,0 +1,12 @@
+[
+  {
+    "model": "networths.networth",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "owner": "nathalie",
+      "date": "2015-11-03", 
+      "net_worth": 500
+    }
+  }
+]

@@ -22,9 +22,9 @@ class TradeView(GenericAPIView):
 # ? Am I going to have to change this to RetrieveUpdateDestroyAPIView as well? 
 # ? Because I want to make it possible to upload an entire table at once. 
 class TradeListView(TradeView, UserListCreateAPIView ):
-  permission_classes = [IsOwner]
+  permission_classes = [IsAuthenticated, IsOwner]
 
 
 # This is going to allow us to add individual trades if we want. 
 class TradeDetailView(TradeView, RetrieveUpdateDestroyAPIView):
-  permission_classes = [IsOwner]
+  permission_classes = [IsAuthenticated, IsOwner]

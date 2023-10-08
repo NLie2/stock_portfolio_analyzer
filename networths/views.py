@@ -19,7 +19,7 @@ class NetworthView(GenericAPIView):
   serializer_class=NetworthSerializer
 
 class NetworthListView( NetworthView, UserListCreateAPIView):
-  permission_classes= [IsOwner]
+  permission_classes= [IsAuthenticated, IsOwner] # ! This does not work yet, non-owners can see networthlist
 
 class NetworthDetailView(NetworthView, UserListCreateAPIView):
-  permission_classes= [IsOwner]
+  permission_classes= [IsAuthenticated, IsOwner] # ! This does not work yet, nonowners can see details

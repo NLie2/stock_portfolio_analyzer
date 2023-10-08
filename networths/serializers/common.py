@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from ..models import Trade
+from ..models import Networth
 
 
 class NetworthSerializer(serializers.ModelSerializer):
   class Meta: 
-    model = Trade
+    model = Networth
     fields = '__all__'
