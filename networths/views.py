@@ -1,9 +1,21 @@
-from .views import NetworthListView, NetworthDetailView
-from django.urls import path
+from rest_framework.generics import  (
+  GenericAPIView, 
+  RetrieveUpdateDestroyAPIView
+)
+from lib.views import UserListCreateAPIView
 
-# Every request that hits this file will start with /books/
-urlpatterns = [
-    path('', NetworthListView.as_view()), # the full path for this view is /trades/
-    path('<int:pk>/', NetworthDetailView.as_view()) # full path for this would be /trades/:id/
-    
-]
+# Models
+from .models import Networth
+
+# Serializers
+from .serializers.common import NetworthSerializer
+
+# Permissions
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from lib.permissions import IsOwnerOrReadOnly
+
+class NetworthView(GenericAPIView):
+  pass
+
+class NetworthListView( NetworthView, UserListCreateAPIView):
+  permission_classes= [IsAuthenticated]
