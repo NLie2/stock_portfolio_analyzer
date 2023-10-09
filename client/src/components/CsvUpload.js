@@ -1,4 +1,5 @@
 import axios from 'axios'
+import axiosAuth from '../lib/axios'
 
 import Papa from 'papaparse'
 
@@ -11,9 +12,6 @@ export default function CsvUpload( { formData, setFormData }){
 
   const handleUpload = async (e) => {
 
-    // data.append('file', e.target.files[0] ) 
-    // console.log('FILE CHANGED', data)
-
     const file = e.target.files[0]
 
     Papa.parse(file, {
@@ -21,25 +19,23 @@ export default function CsvUpload( { formData, setFormData }){
       dynamicTyping: true,
       complete: function(results) {
         console.log('Finished:', results.data)
+        console.log('Finished:', { ...results.data[0] })
+
+        setFormData( { ...formData, ...results.data[0] } )
+
       } })
 
-    // const reader = new FileReader()
 
-    // reader.onload = function(event) {
-    //   // The file's text will be printed here
-    //   console.log(event.target.result)
-    // }
-  
-    // reader.readAsText(file)
+    console.log('data',  formData)
 
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault()
     try { 
-      const { res } = await axios.post('/api/auth/trades/', data )
-      console.log(res.data)
-
-      setFormData = { ...formData, trades_table: res }
+      const { res } = await axiosAuth.post('/api/trades/', formData )
+      res && console.log(res.data)
+      setMessage('CSV uploaded')
 
     } catch (error) {
       console.log(error)
