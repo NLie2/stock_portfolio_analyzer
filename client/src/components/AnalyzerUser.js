@@ -1,21 +1,25 @@
-import { useEffect } from 'react'
-import axiosAuth from '../lib/axios'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+
+// components
+import CsvUpload from './CsvUpload'
 
 
-export default function Login() {
-  useEffect(() => {
-    async function getData(){
-      try {
-        const { data } = await axiosAuth.get('/api/trades/') // <---- Replace with your endpoint to test the proxy
-        console.log(data)
-      } catch (error) {
-        console.log(error.response.data)
-      }
-    }
-    getData()
-  }, [])
+export default function AnalyzerUser() {
+
+  const [ formData, setFormData ] = useState({
+    trades_table: '', 
+  })
+
 
   return (
-    <h1>ANALYZER USER</h1>
+    <>
+      <h1> ANALYZER USER </h1>
+      < CsvUpload
+        formData={formData}
+        setFormData={setFormData}
+      />
+    </>
+
   )
 }
