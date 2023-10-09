@@ -8,7 +8,7 @@ import { setToken } from '../lib/auth'
 
 export default function Login() {
   const [ message, setMessage ] = useState('')
-  const [ formData, setFormData ] = useState( {
+  const [ formData, setFormData ] = useState({
     username: '', 
     password: '',
   })
@@ -34,9 +34,9 @@ export default function Login() {
 
   return (
     <form onSubmit={handleSubmit}> 
-      <input type="username" name="username" value={FormData.username} onChange={handleChange}></input>
+      <input type="username" name="username" placeholder="username" value={FormData.username} onChange={handleChange}></input>
       <br />
-      <input type="password" name="password" value={FormData.username} onChange={handleChange}></input>
+      <input type="password" name="password" placeholder="password" value={FormData.password} onChange={handleChange}></input>
       <br />
       { message && <p> {message}</p>}
       <input type = "submit" value= "Submit"></input>

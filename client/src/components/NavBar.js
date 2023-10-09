@@ -1,5 +1,14 @@
+import Navbar from 'react-bootstrap/Navbar'
+
+
 export default function Login() {
   return (
-    <h1>NAV BAR</h1>
+    <nav className="menu">
+      <ul>
+        <li><a href="/register">Register</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Analyze</a></li>
+      </ul>
+    </nav>
   )
 }
