@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import Papa from 'papaparse'
+
 import { useEffect, useState } from 'react'
 
 export default function CsvUpload( { formData, setFormData }){
@@ -13,14 +15,22 @@ export default function CsvUpload( { formData, setFormData }){
     // console.log('FILE CHANGED', data)
 
     const file = e.target.files[0]
-    const reader = new FileReader()
-    
-    reader.onload = function(event) {
-      // The file's text will be printed here
-      console.log(event.target.result)
-    }
+
+    Papa.parse(file, {
+      header: true, 
+      dynamicTyping: true,
+      complete: function(results) {
+        console.log('Finished:', results.data)
+      } })
+
+    // const reader = new FileReader()
+
+    // reader.onload = function(event) {
+    //   // The file's text will be printed here
+    //   console.log(event.target.result)
+    // }
   
-    reader.readAsText(file)
+    // reader.readAsText(file)
 
   }
 
