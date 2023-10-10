@@ -1,17 +1,1 @@
-[
-  {
-    "model": "trades.trade",
-    "pk": 1,
-    "fields": {
-      "date": "2015-11-03", 
-      "ticker": "CHD.US",
-      "price": 76.90, 
-      "shares": 7, 
-      "costs": 4.95, 
-      "taxes": 0.0, 
-      "currencyPair":	"EURUSD.FOREX", 
-      "comment": "Original purchase",
-      "user": 1
-    }
-  } 
-]
+[{"model": "trades.trade", "pk": 1, "fields": {"tradeTable": 1, "date": "2015-11-03", "ticker": "CHD.US", "price": 76.9, "shares": 7, "costs": 4.95, "taxes": 0.0, "currencyPair": "EURUSD.FOREX"}}, {"model": "trades.trade", "pk": 2, "fields": {"tradeTable": 2, "date": "2017-10-03", "ticker": "CHD.US", "price": 76.9, "shares": 7, "costs": 4.95, "taxes": 0.0, "currencyPair": "EURUSD.FOREX"}}, {"model": "trades.trade", "pk": 3, "fields": {"tradeTable": 1, "date": "2015-11-03", "ticker": "CHD.US", "price": 2.0, "shares": 1, "costs": 2.0, "taxes": 0.0, "currencyPair": "EURUSD.FOREX"}}]

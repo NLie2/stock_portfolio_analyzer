@@ -1,0 +1,1 @@
+[{"model": "tradetables.tradetable", "pk": 1, "fields": {"user": 1, "owner": "nathalie"}}, {"model": "tradetables.tradetable", "pk": 2, "fields": {"user": 4, "owner": "florian"}}]

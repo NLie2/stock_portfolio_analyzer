@@ -13,4 +13,3 @@ class Trade(models.Model):
   costs = models.FloatField() 
   taxes = models.FloatField()
   currencyPair = models.CharField()
-  comment = models.TextField(blank=True, null=True, max_length=250)
