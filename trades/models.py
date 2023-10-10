@@ -5,7 +5,6 @@ class Trade(models.Model):
     'tradetables.Tradetable', 
     related_name = 'trades', 
     on_delete= models.CASCADE, #If the owner is deleted, I want all their trade tables to be deleted too. 
-    default=1
   )
   date = models.DateField() 
   ticker = models.CharField() 
