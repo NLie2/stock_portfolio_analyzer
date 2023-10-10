@@ -10,7 +10,7 @@ export default function Login() {
         <Nav className="me-auto">
           <Nav.Link href="/login/">Login</Nav.Link>
           <Nav.Link href="/register/">Register</Nav.Link>
-          <Nav.Link href="/analyze/guest/">Analyze</Nav.Link>
+          <Nav.Link href="/analyze/user/">Analyze</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
