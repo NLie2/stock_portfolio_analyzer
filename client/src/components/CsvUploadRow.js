@@ -5,9 +5,8 @@ import Papa from 'papaparse'
 
 import { useEffect, useState } from 'react'
 
-export default function CsvUpload( { formData, setFormData }){
+export default function CsvUploadRow( { formData, setFormData }){
   const [ message, setMessage ] = useState('')
-  const [ owner, setOwner ] = useState('')
 
   const data = new FormData()
 
@@ -20,19 +19,21 @@ export default function CsvUpload( { formData, setFormData }){
       dynamicTyping: true,
       complete: function(results) {
         console.log('Finished:', results.data)
+        console.log('Finished:', { ...results.data[0] })
 
-        setFormData( { ...formData, trade_table: { owner: owner }, trades: results.data } )
-        console.log('check formdata... ', formData)
+        setFormData( { ...formData, ...results.data[0] } )
 
       } })
+
+
+    console.log('data',  formData)
 
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try { 
-      console.log(formData)
-      const { res } = await axiosAuth.post('/api/tradetables/', formData )
+      const { res } = await axiosAuth.post('/api/trades/', formData )
       res && console.log(res.data)
       setMessage('CSV uploaded')
 
@@ -44,9 +45,6 @@ export default function CsvUpload( { formData, setFormData }){
 
   return (
     <form onSubmit={handleSubmit}> 
-      {/* This should be a select later, so that the user can select between all existing tables*/}
-      <input type="string" name="owner" placeholder="owner"  onChange={ (e) => setOwner(e.target.value) }></input>
-
       <input type="file" name="trades_table" placeholder="trades_table"  onChange={handleUpload}></input>
       <br />
       { message && <p> {message}</p>}

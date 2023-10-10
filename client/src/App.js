@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 
 import Footer from './components/Footer'
@@ -16,15 +16,23 @@ import AnalyzerUser from './components/AnalyzerUser'
 
 
 export default function App() {
+
+  const [ user, setUser ] = useState()
+
   return (
     <>
-      <NavBar/>
+      <NavBar
+        user={user}
+      />
       
       <BrowserRouter>
         <Routes>
           
           <Route path='/' element= {<Landing />} />
-          <Route path='/login/' element= {<Login /> } />
+          <Route path='/login/' element= {<Login 
+            user={user}
+            setUser={setUser}
+          /> } />
           <Route path='/register/' element= { <Register /> } />
           <Route path='/profile/:userid/' element= {<Profile /> } />
           <Route path='/analyze/guest/' element= { <AnalyzerGuest /> } />

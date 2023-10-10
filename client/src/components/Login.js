@@ -3,10 +3,13 @@ import axios from 'axios'
 
 import { setToken } from '../lib/auth'
 
+import { Link } from 'react-router-dom'
 
 
 
-export default function Login() {
+
+export default function Login({ user, setUser }) {
+
   const [ message, setMessage ] = useState('')
   const [ formData, setFormData ] = useState({
     username: '', 
@@ -22,6 +25,7 @@ export default function Login() {
     try {
       
       const { data } = await axios.post('/api/auth/login/', formData) 
+      setUser(JSON.parse(atob(data.access.split('.')[1])).user_id )
       setToken('access-token', data.access)
       setToken('refresh-token', data.refresh)
       setMessage('Login was successful')
@@ -38,7 +42,7 @@ export default function Login() {
       <br />
       <input type="password" name="password" placeholder="password" value={FormData.password} onChange={handleChange}></input>
       <br />
-      { message && <p> {message}</p>}
+      { message && <p> {message} {<Link to={`/analyze/${user}/`}> analyze portfolio </Link>}</p>}
       <input type = "submit" value= "Submit"></input>
     </form>
   )
