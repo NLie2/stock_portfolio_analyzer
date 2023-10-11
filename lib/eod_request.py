@@ -1,7 +1,14 @@
 import requests 
+import os
+from dotenv import ( load_dotenv, dotenv_values )
 
+# Load environment variables from .env file
+load_dotenv()
 
-r = requests.get(f"https://eodhd.com/api/eod/AAPL.US?fmt=json&&api_token=${API_key}")
+# Access environment variables
+API_KEY = os.getenv('API_KEY')
+
+r = requests.get(f"https://eodhd.com/api/exchanges-list/?api_token={API_KEY}")
 
 
 print(r.json())
