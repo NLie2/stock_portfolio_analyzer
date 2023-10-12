@@ -1,6 +1,7 @@
 from rest_framework.generics import  (
   GenericAPIView, 
-  RetrieveUpdateDestroyAPIView
+  RetrieveUpdateDestroyAPIView, 
+  CreateAPIView
 )
 from lib.views import UserListCreateAPIView
 
@@ -18,8 +19,10 @@ class NetworthView(GenericAPIView):
   queryset=Networth.objects.all()
   serializer_class=NetworthSerializer
 
-class NetworthListView( NetworthView, UserListCreateAPIView):
-  permission_classes= [IsAuthenticated, IsOwner] # ! This does not work yet, non-owners can see networthlist
+class NetworthListView( NetworthView, CreateAPIView):
+  permission_classes= [IsAuthenticated, IsOwner] 
+  def perform_create(self, serializer):
+      serializer.save(user=self.request.user)
 
-class NetworthDetailView(NetworthView, UserListCreateAPIView):
-  permission_classes= [IsAuthenticated, IsOwner] # ! This does not work yet, nonowners can see details
+class NetworthDetailView(NetworthView, RetrieveUpdateDestroyAPIView):
+  permission_classes= [IsAuthenticated, IsOwner] 
