@@ -12,7 +12,8 @@ export default function Login( { user } ) {
           <Nav.Link href="/register/">Register</Nav.Link>
 
           {/* If the user is logged in, then the analyze link will lead to the user page, if not it will lead to the guest page */}
-          { user ? <Nav.Link href="/analyze/user/">Analyze</Nav.Link> :  <Nav.Link href="/analyze/guest/">Analyze</Nav.Link> }
+          { user ? <Nav.Link href={`/analyze/${user}/`}>Analyze</Nav.Link> :  <Nav.Link href="/analyze/guest/">Analyze</Nav.Link> }
+          { user && <Nav.Link href={`/profile/${user}/`}>Profile</Nav.Link> }
         </Nav>
       </Container>
     </Navbar>

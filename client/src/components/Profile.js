@@ -15,6 +15,13 @@ export default function Login() {
   }, [])
 
   return (
-    <h1>PROFILE</h1>
+    <>
+      <div className='networths'>
+        <h1> Networths </h1>
+      </div>
+      <div className='trades'>
+        <h1> Trades </h1>
+      </div>
+    </>
   )
 }

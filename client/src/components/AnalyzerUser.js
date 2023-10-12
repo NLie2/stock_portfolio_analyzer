@@ -25,11 +25,11 @@ export default function AnalyzerUser() {
         setFormData={setFormData}
       />
       <br />
-      <h2> Add entry to existing table ... </h2>
+      {/* <h2> Add entry to existing table ... </h2>
       < CsvUploadRow
         formData={formData}
         setFormData={setFormData}
-      />
+      /> */}
     </>
 
   )

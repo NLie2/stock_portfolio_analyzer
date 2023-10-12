@@ -5,9 +5,14 @@ import Papa from 'papaparse'
 
 import { useEffect, useState } from 'react'
 
+import JSONPretty from 'react-json-pretty'
+
+import Table from './Table'
+
 export default function CsvUpload( { formData, setFormData }){
   const [ message, setMessage ] = useState('')
   const [ owner, setOwner ] = useState('')
+  const [ tradeData, setTradeData ] = useState('')
 
   const data = new FormData()
 
@@ -32,9 +37,16 @@ export default function CsvUpload( { formData, setFormData }){
     e.preventDefault()
     try { 
       console.log(formData)
-      const { res } = await axiosAuth.post('/api/tradetables/', formData )
-      res && console.log(res.data)
-      setMessage('CSV uploaded')
+      const { data }  = await axiosAuth.post('/api/tradetables/', formData )
+      if (data) {
+        console.log('response...', data)
+        
+        setMessage( 'CSV uploaded' )
+        setTradeData( data )
+      } else {
+        setMessage('something went wrong')
+      }
+
 
     } catch (error) {
       console.log(error)
@@ -43,14 +55,30 @@ export default function CsvUpload( { formData, setFormData }){
   }
 
   return (
-    <form onSubmit={handleSubmit}> 
-      {/* This should be a select later, so that the user can select between all existing tables*/}
-      <input type="string" name="owner" placeholder="owner"  onChange={ (e) => setOwner(e.target.value) }></input>
+    <>
+      <form onSubmit={handleSubmit}> 
+        {/* This should be a select later, so that the user can select between all existing tables*/}
+        <input type="string" name="owner" placeholder="owner"  onChange={ (e) => setOwner(e.target.value) }></input>
 
-      <input type="file" name="trades_table" placeholder="trades_table"  onChange={handleUpload}></input>
-      <br />
-      { message && <p> {message}</p>}
-      <input type = "submit" value= "Submit"></input>
-    </form>
+        <input type="file" name="trades_table" placeholder="trades_table"  onChange={handleUpload}></input>
+        <br />
+        { message && message }
+        <input type = "submit" value= "Submit"></input>
+      </form>
+      <div>
+        { tradeData &&
+          <div className='tables'>
+            <Table 
+              tradeData={tradeData}
+              title= {'prices'}
+            />
+            <Table 
+              tradeData={tradeData}
+              title= {'dividents'}
+            />
+          </div>}
+      </div>
+      
+    </>
   )
 }
