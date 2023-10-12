@@ -3,9 +3,6 @@ from .serializers.common import RegistrationSerializer
 from django.contrib.auth import get_user_model
 
 from networths.models import Networth
-#Import views from lib and networths
-from networths.views import NetworthView
-from lib.views import UserListCreateAPIView
 
 # Permissions
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly

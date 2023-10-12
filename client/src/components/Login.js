@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 
 
-export default function Login({ user, setUser }) {
+export default function Login({ user, setUser, setUserName }) {
 
   const [ message, setMessage ] = useState('')
   const [ formData, setFormData ] = useState({
@@ -23,10 +23,12 @@ export default function Login({ user, setUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      setUserName(formData.username)
+
       
       const { data } = await axios.post('/api/auth/login/', formData) 
       setUser(JSON.parse(atob(data.access.split('.')[1])).user_id )
-      console.log('User in login... ', user)
+
       setToken('access-token', data.access)
       setToken('refresh-token', data.refresh)
       setMessage('Login was successful')

@@ -18,23 +18,28 @@ import AnalyzerUser from './components/AnalyzerUser'
 export default function App() {
 
   const [ user, setUser ] = useState()
-
+  const [ userName, setUserName ] = useState()
   return (
     <>
-      <NavBar
-        user={user}
-      />
       
       <BrowserRouter>
+        <NavBar
+          user={user}
+          userName={userName}
+        />
         <Routes>
           
           <Route path='/' element= {<Landing />} />
           <Route path='/login/' element= {<Login 
             user={user}
             setUser={setUser}
+            setUserName={setUserName}
+            userName = {userName}
           /> } />
           <Route path='/register/' element= { <Register /> } />
-          <Route path='/profile/:userid/' element= {<Profile /> } />
+          <Route path='/profile/:userid/' element= {<Profile
+            user={user}
+          /> } />
           <Route path='/analyze/guest/' element= { <AnalyzerGuest /> } />
           <Route path='/analyze/:userid/' element= {<AnalyzerUser /> } />
 
