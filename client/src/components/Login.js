@@ -26,6 +26,7 @@ export default function Login({ user, setUser }) {
       
       const { data } = await axios.post('/api/auth/login/', formData) 
       setUser(JSON.parse(atob(data.access.split('.')[1])).user_id )
+      console.log('User in login... ', user)
       setToken('access-token', data.access)
       setToken('refresh-token', data.refresh)
       setMessage('Login was successful')
