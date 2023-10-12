@@ -9,6 +9,7 @@ djangorestframework = "*"
 psycopg2 = "*"
 requests = "*"
 python-dotenv = "*"
+pandas = "*"
 
 [dev-packages]
 

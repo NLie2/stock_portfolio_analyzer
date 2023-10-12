@@ -21,6 +21,8 @@ from lib.permissions import IsOwnerOrReadOnly, IsOwner
 # Rest Framework
 from rest_framework.response import Response
 
+from lib.eod_request import get_prices, get_dividents
+
 class TradeTableView(GenericAPIView ):
   queryset=Tradetable.objects.all()
   serializer_class=TradetableSerializer
@@ -31,35 +33,44 @@ class TradetableListView(TradeTableView, CreateAPIView):
   #overwrite create method because I want users to be able to create nested tables
   def create(self, request):
 
-    print(request.user)
+    
+    
     trade_table = request.data.get('trade_table')
-    trade_table['user'] = request.user.id
+    trades= request.data.get('trades')
+
+    # get dates and tickers from request, and make sure there are no duplicates 
+    dates = [ trade['date'] for trade in trades]
+    date_from = min(dates) # You can also specify a maximum date but default is today. 
+
+    tickers = list(dict.fromkeys([ trade['ticker'] for trade in trades]))
+
+    #get prices and dividents
+    dividents = get_dividents(date_from=date_from, tickers=tickers)
+    prices = get_prices(date_from=date_from, tickers=tickers)
 
 
     serialized_tradetable = TradetableSerializer(data=trade_table)
 
-
-
     if serialized_tradetable.is_valid():
       serialized_tradetable.save()
-
-      #then trades
-      trades= request.data.get('trades')
+      print("All trades... ", trades)
 
       #map trades to include the serialized table id
       for trade in trades: 
         trade['tradeTable'] = serialized_tradetable.data['id']
+        print("INDIVIDUAL TRADE...", trade)
         serialized_trade = TradeSerializer(data=trade)
+        print(serialized_trade.is_valid())
 
         if serialized_trade.is_valid():
           serialized_trade.save()
     
         else: 
-          return Response('Something went wrong')
+          return Response('Serialized trade is not valid')
       
-      return Response(201)
+      return Response({'prices': prices, 'dividents': dividents, 'trades': trades})
     else:
-      return Response('Something went wrong')
+      return Response('serialized trade table is not valid')
 
 
 
