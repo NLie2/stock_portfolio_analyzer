@@ -20,7 +20,7 @@ class NetworthView(GenericAPIView):
   serializer_class=NetworthSerializer
 
 class NetworthListView( NetworthView, CreateAPIView):
-  permission_classes= [IsAuthenticated, IsOwner] 
+  permission_classes= [IsAuthenticated] 
   def perform_create(self, serializer):
       serializer.save(user=self.request.user)
 
