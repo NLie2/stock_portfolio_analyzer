@@ -19,8 +19,6 @@ class TradeView(GenericAPIView):
   serializer_class=TradeSerializer
 
 
-# ? Am I going to have to change this to RetrieveUpdateDestroyAPIView as well? 
-# ? Because I want to make it possible to upload an entire table at once. 
 class TradeListView(TradeView, UserListCreateAPIView ):
   permission_classes = [IsAuthenticated, IsOwner]
 
