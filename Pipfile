@@ -12,6 +12,7 @@ python-dotenv = "*"
 pandas = "*"
 django-environ = "*"
 django-on-heroku = "*"
+rest-framework-simplejwt = "*"
 
 [dev-packages]
 
