@@ -1,12 +1,242 @@
 [
   {
+      "model": "networths.networth",
+      "pk": 1,
+      "fields": {
+          "user": 1,
+          "owner": "nathalie",
+          "date": "2015-11-03",
+          "net_worth": 500
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 2,
+      "fields": {
+          "user": 1,
+          "owner": "nathalie",
+          "date": "2016-11-04",
+          "net_worth": 1000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 3,
+      "fields": {
+          "user": 1,
+          "owner": "nathalie",
+          "date": "2017-11-05",
+          "net_worth": 700
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 4,
+      "fields": {
+          "user": 1,
+          "owner": "nathalie",
+          "date": "2018-11-06",
+          "net_worth": 2000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 5,
+      "fields": {
+          "user": 1,
+          "owner": "nathalie",
+          "date": "2019-11-07",
+          "net_worth": 900
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 6,
+      "fields": {
+          "user": 1,
+          "owner": "nathalie",
+          "date": "2020-11-08",
+          "net_worth": 1000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 7,
+      "fields": {
+          "user": 1,
+          "owner": "nathalie",
+          "date": "2021-11-09",
+          "net_worth": 4000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 8,
+      "fields": {
+          "user": 1,
+          "owner": "nathalie",
+          "date": "2022-11-10",
+          "net_worth": 3000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 9,
+      "fields": {
+          "user": 1,
+          "owner": "nathalie",
+          "date": "2023-11-11",
+          "net_worth": 4500
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 10,
+      "fields": {
+          "user": 1,
+          "owner": "florian",
+          "date": "2015-11-03",
+          "net_worth": 600
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 11,
+      "fields": {
+          "user": 1,
+          "owner": "florian",
+          "date": "2016-11-04",
+          "net_worth": 700
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 12,
+      "fields": {
+          "user": 1,
+          "owner": "florian",
+          "date": "2017-11-05",
+          "net_worth": 2000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 13,
+      "fields": {
+          "user": 1,
+          "owner": "florian",
+          "date": "2018-11-06",
+          "net_worth": 3000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 14,
+      "fields": {
+          "user": 1,
+          "owner": "florian",
+          "date": "2019-11-07",
+          "net_worth": 1000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 15,
+      "fields": {
+          "user": 1,
+          "owner": "florian",
+          "date": "2020-11-08",
+          "net_worth": 5000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 16,
+      "fields": {
+          "user": 1,
+          "owner": "florian",
+          "date": "2021-11-09",
+          "net_worth": 1200
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 17,
+      "fields": {
+          "user": 1,
+          "owner": "florian",
+          "date": "2023-11-10",
+          "net_worth": 1300
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 18,
+      "fields": {
+          "user": 1,
+          "owner": "florian",
+          "date": "2024-11-11",
+          "net_worth": 4000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 19,
+      "fields": {
+          "user": 1,
+          "owner": "anne",
+          "date": "2015-11-03",
+          "net_worth": 700
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 20,
+      "fields": {
+          "user": 1,
+          "owner": "anne",
+          "date": "2016-11-04",
+          "net_worth": 2000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 21,
+      "fields": {
+          "user": 1,
+          "owner": "anne",
+          "date": "2017-11-05",
+          "net_worth": 900
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 22,
+      "fields": {
+          "user": 1,
+          "owner": "anne",
+          "date": "2018-11-06",
+          "net_worth": 1000
+      }
+  },
+  {
+      "model": "networths.networth",
+      "pk": 23,
+      "fields": {
+          "user": 1,
+          "owner": "anne",
+          "date": "2019-11-07",
+          "net_worth": 2000
+      }
+  },
+  {
     "model": "networths.networth",
     "pk": 1,
     "fields": {
       "user": 1,
       "owner": "nathalie",
-      "date": "2015-11-03", 
-      "net_worth": 500
+      "date": "2020-11-03", 
+      "net_worth": 3000
     }
   }, 
   {
@@ -14,9 +244,9 @@
     "pk": 2,
     "fields": {
       "user": 1,
-      "owner": "nathalie",
-      "date": "2020-11-03", 
-      "net_worth": 1000
+      "owner": "anne",
+      "date": "2021-11-03", 
+      "net_worth": 6000
     }
   }, 
   {
@@ -24,9 +254,9 @@
     "pk": 3,
     "fields": {
       "user": 1,
-      "owner": "nathalie",
-      "date": "2020-11-03", 
-      "net_worth": 1500
+      "owner": "anne",
+      "date": "2022-11-03", 
+      "net_worth": 4000
     }
   }, 
   {
@@ -34,19 +264,9 @@
     "pk": 4,
     "fields": {
       "user": 1,
-      "owner": "florian",
-      "date": "2015-11-03", 
-      "net_worth": 700
-    }
-  }, 
-  {
-    "model": "networths.networth",
-    "pk": 5,
-    "fields": {
-      "user": 1,
       "owner": "anne",
-      "date": "2015-11-03", 
-      "net_worth": 800
+      "date": "2023-11-03", 
+      "net_worth": 4500
     }
   }
 ]

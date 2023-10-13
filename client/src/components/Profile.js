@@ -17,6 +17,8 @@ export default function Profile( { user } ) {
   const [ labels, setLabels ] = useState()
   const [ chartData, setChartData ] = useState()
 
+  const [ ownerToAnalyze, setOwnerToAnalyze ] = useState('')
+
   useEffect(() => {
     async function getNetworths(){
       try {
@@ -32,10 +34,13 @@ export default function Profile( { user } ) {
 
   useEffect(() => {
     networths && setOwners([... new Set(networths.map( (networth => networth.owner)))])
-    networths && setLabels(networths.filter( networth => networth.owner === 'nathalie').map( networth => networth.date ))
-    networths && setChartData(networths.filter( networth => networth.owner === 'nathalie').map( networth => networth.net_worth ))
-  },[networths])
-  console.log(networths, owners, labels, chartData)
+    networths && setLabels(networths.filter( networth => networth.owner === ownerToAnalyze).map( networth => networth.date ))
+    networths && setChartData(networths.filter( networth => networth.owner === ownerToAnalyze).map( networth => networth.net_worth ))
+  },[networths, ownerToAnalyze])
+
+  const handleClick = (e) => {
+    setOwnerToAnalyze( e.target.value )
+  }
 
   return (
     <>
@@ -45,14 +50,16 @@ export default function Profile( { user } ) {
       
       {owners && owners.map((owner, idx) => (
         <div key={idx}>
-          <button>generate graph for {owner}&apos; s portfolio </button>
+          <button onClick={handleClick} value={owner}>generate graph for {owner}&apos; s portfolio </button>
         </div>
       ))}
       
       {
-        networths &&    <LineChart 
+        (networths && ownerToAnalyze) &&    <LineChart 
           chartLabels = {labels}
           chartData={chartData}
+          graphLabel={ownerToAnalyze}
+          color={'orange'}
         />
       }
 
