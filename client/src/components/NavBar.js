@@ -9,10 +9,6 @@ import { Link } from 'react-router-dom'
 export default function NavBar( { user, userName } ) {
 
   return (
-  // <nav>
-  //   <Link to="/login/">Login</Link>
-  //   <Link to="/register/">Register</Link>
-  // </nav>
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Nav className="me-auto">
@@ -25,11 +21,5 @@ export default function NavBar( { user, userName } ) {
         </Nav>
       </Container>
     </Navbar>
-  //   <div>
-
-  //     {<Link to={`/analyze/${user}/`}> analyze portfolio </Link>}
-
-  //     <h1> I am a NavBar</h1>
-  //   </div>
   )
 }

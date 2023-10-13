@@ -5,9 +5,11 @@ import axios from 'axios'
 import CsvUpload from './CsvUpload'
 import CsvUploadRow from './CsvUploadRow'
 
+import PricesTable from './PricesTable'
+
 
 export default function AnalyzerUser() {
-
+  const [ tradeData, setTradeData ] = useState('')
   const [ formData, setFormData ] = useState({
     trade_table: '',
     trades: '', 
@@ -23,6 +25,7 @@ export default function AnalyzerUser() {
       < CsvUpload
         formData={formData}
         setFormData={setFormData}
+        setTradeData={setTradeData}
       />
       <br />
       {/* <h2> Add entry to existing table ... </h2>
@@ -30,6 +33,20 @@ export default function AnalyzerUser() {
         formData={formData}
         setFormData={setFormData}
       /> */}
+
+      <div>
+        { tradeData &&
+          <div className='tables'>
+            <PricesTable 
+              prices={tradeData.prices}
+              title={'prices'}
+            />
+            <PricesTable 
+              prices={tradeData.dividents}
+              title={'dividents'}
+            />
+          </div>}
+      </div>
     </>
 
   )

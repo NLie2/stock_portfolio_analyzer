@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import axiosAuth from '../lib/axios'
 
 export default function Profile( { user } ) {
-  console.log(user)
   const [ networths, setNetworths ] = useState()
 
   useEffect(() => {

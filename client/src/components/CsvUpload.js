@@ -7,12 +7,11 @@ import { useEffect, useState } from 'react'
 
 import JSONPretty from 'react-json-pretty'
 
-import Table from './Table'
+import Table from './PricesTable'
 
-export default function CsvUpload( { formData, setFormData }){
+export default function CsvUpload( { formData, setFormData, setTradeData }){
   const [ message, setMessage ] = useState('')
   const [ owner, setOwner ] = useState('')
-  const [ tradeData, setTradeData ] = useState('')
 
   const data = new FormData()
 
@@ -65,19 +64,6 @@ export default function CsvUpload( { formData, setFormData }){
         { message && message }
         <input type = "submit" value= "Submit"></input>
       </form>
-      <div>
-        { tradeData &&
-          <div className='tables'>
-            <Table 
-              tradeData={tradeData}
-              title= {'prices'}
-            />
-            <Table 
-              tradeData={tradeData}
-              title= {'dividents'}
-            />
-          </div>}
-      </div>
       
     </>
   )
