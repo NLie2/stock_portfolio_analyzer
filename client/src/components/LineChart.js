@@ -6,12 +6,12 @@ export default function LineChart( { chartLabels, chartData, graphLabel, color }
 
   const data = {
     labels: chartLabels,
-    // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
+
     datasets: [
       {
         label: graphLabel,
         data: chartData,
-        // you can set indiviual colors for each bar
+
         backgroundColor: [
           'rgba(255,165,0, 1)',
           'rgba(255,165,0, 1)',

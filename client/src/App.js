@@ -21,29 +21,31 @@ export default function App() {
   const [ userName, setUserName ] = useState()
   return (
     <>
-      
       <BrowserRouter>
-        <NavBar
-          user={user}
-          userName={userName}
-        />
-        <Routes>
-          
-          <Route path='/' element= {<Landing />} />
-          <Route path='/login/' element= {<Login 
+        <nav>
+          <NavBar
             user={user}
-            setUser={setUser}
-            setUserName={setUserName}
-            userName = {userName}
-          /> } />
-          <Route path='/register/' element= { <Register /> } />
-          <Route path='/profile/:userid/' element= {<Profile
-            user={user}
-          /> } />
-          <Route path='/analyze/guest/' element= { <AnalyzerGuest /> } />
-          <Route path='/analyze/:userid/' element= {<AnalyzerUser /> } />
+            userName={userName}
+          />
+        </nav>
+        <main>
+          <Routes> 
+            <Route path='/' element= {<Landing />} />
+            <Route path='/login/' element= {<Login 
+              user={user}
+              setUser={setUser}
+              setUserName={setUserName}
+              userName = {userName}
+            /> } />
+            <Route path='/register/' element= { <Register /> } />
+            <Route path='/profile/:userid/' element= {<Profile
+              user={user}
+            /> } />
+            <Route path='/analyze/guest/' element= { <AnalyzerGuest /> } />
+            <Route path='/analyze/:userid/' element= {<AnalyzerUser /> } />
 
-        </Routes>
+          </Routes>
+        </main>
       </BrowserRouter>
     </>
   )
