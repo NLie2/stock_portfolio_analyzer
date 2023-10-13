@@ -7,8 +7,7 @@ export default function Profile( { user } ) {
   useEffect(() => {
     async function getNetworths(){
       try {
-        const { data } = await axiosAuth.get('/api/networths/user/') // <---- Replace with your endpoint to test the proxy
-        
+        const { data } = await axiosAuth.get('/api/networths/user/') 
         setNetworths( data )
       } catch (error) {
         console.log(error.response.data)

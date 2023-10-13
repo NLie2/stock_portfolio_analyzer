@@ -38,11 +38,11 @@ export default function AnalyzerUser() {
         { tradeData &&
           <div className='tables'>
             <PricesTable 
-              prices={tradeData.prices}
+              pricesOrDividents={tradeData.prices}
               title={'prices'}
             />
             <PricesTable 
-              prices={tradeData.dividents}
+              pricesOrDividents={tradeData.dividents}
               title={'dividents'}
             />
           </div>}
