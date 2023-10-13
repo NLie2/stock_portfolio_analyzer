@@ -1,8 +1,21 @@
 import { useEffect, useState } from 'react'
 import axiosAuth from '../lib/axios'
+import NetworthTable from './NetworthTable'
+
+//charts
+import LineChart from './LineChart'
+import Chart from 'chart.js/auto'
+import { CategoryScale } from 'chart.js'
+
+Chart.register(CategoryScale)
+
 
 export default function Profile( { user } ) {
   const [ networths, setNetworths ] = useState()
+  const [ owners, setOwners ] = useState()
+
+  const [ labels, setLabels ] = useState()
+  const [ chartData, setChartData ] = useState()
 
   useEffect(() => {
     async function getNetworths(){
@@ -14,32 +27,35 @@ export default function Profile( { user } ) {
       }
     }
     getNetworths()
+    
   }, [])
+
+  useEffect(() => {
+    networths && setOwners([... new Set(networths.map( (networth => networth.owner)))])
+    networths && setLabels(networths.filter( networth => networth.owner === 'nathalie').map( networth => networth.date ))
+    networths && setChartData(networths.filter( networth => networth.owner === 'nathalie').map( networth => networth.net_worth ))
+  },[networths])
+  console.log(networths, owners, labels, chartData)
 
   return (
     <>
-      {networths && <div className='networths'>
-        <h1> Networths </h1>
-        <table>
-          <thead>
-            <tr>
-              <th>owner</th>
-              <th>date</th>
-              <th>networth</th>
-            </tr>
-          </thead>
-          <tbody>
-            {networths.map((row, index) => (
-              <tr key={index}>
-                <td>{row.owner}</td>
-                <td>{row.date}</td>
-                <td>{row.net_worth}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div> }
+      <NetworthTable 
+        networths={networths}
+      />
       
+      {owners && owners.map((owner, idx) => (
+        <div key={idx}>
+          <button>generate graph for {owner}&apos; s portfolio </button>
+        </div>
+      ))}
+      
+      {
+        networths &&    <LineChart 
+          chartLabels = {labels}
+          chartData={chartData}
+        />
+      }
+
     </>
   )
 }
