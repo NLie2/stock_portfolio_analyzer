@@ -13,6 +13,7 @@ pandas = "*"
 django-environ = "*"
 django-on-heroku = "*"
 rest-framework-simplejwt = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
