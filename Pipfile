@@ -10,6 +10,10 @@ psycopg2 = "*"
 requests = "*"
 python-dotenv = "*"
 pandas = "*"
+django-environ = "*"
+django-on-heroku = "*"
+rest-framework-simplejwt = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
