@@ -1,0 +1,37 @@
+.analyzer-container{
+  display: flex;
+  flex-direction: column; 
+  align-items: left;
+  margin-top: 4rem; 
+  padding: 4rem; 
+
+}
+// .api-response{
+//   overflow-y: auto;
+
+// }
+.table-container{
+  padding: 2rem; 
+}
+.tables{
+  height: 300px; 
+}
+.table{
+  height: 100px; 
+  overflow-y: auto;
+  height: 100px;
+  max-width: 80vw;
+
+
+  overflow-y: auto;
+  overflow-x: hide;
+  display: flex;
+  justify-content: center;
+
+  // border-collapse: separate;
+  // border-spacing: 50px 0;
+  
+}
+td{
+  padding: 1rem;
+}

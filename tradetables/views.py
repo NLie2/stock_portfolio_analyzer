@@ -45,7 +45,8 @@ class TradetableListView(TradeTableView, CreateAPIView):
     tickers = list(dict.fromkeys([ trade['ticker'] for trade in trades]))
 
     #get prices and dividents
-    dividents = get_dividents(date_from=date_from, tickers=tickers)
+    # ! Not getting dividents right now because of an error and because it is not necesary for the MVP, which only determines networth
+    # dividents = get_dividents(date_from=date_from, tickers=tickers)
     prices = get_prices(date_from=date_from, tickers=tickers)
 
 
@@ -68,8 +69,11 @@ class TradetableListView(TradeTableView, CreateAPIView):
     
         else: 
           return Response('Serialized trade is not valid')
-      
-      return Response({'prices': prices, 'dividents': dividents, 'trades': trades})
+    
+      # ! Do not return dividents
+      # return Response({'prices': prices, 'dividents': dividents, 'trades': trades})
+
+      return Response({'prices': prices, 'trades': trades})
     else:
       return Response('serialized trade table is not valid')
 

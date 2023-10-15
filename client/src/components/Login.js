@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 
 
-export default function Login({ user, setUser, setUserName }) {
+export default function Login({ user, setUser, userName, setUserName }) {
 
   const [ message, setMessage ] = useState('')
   const [ formData, setFormData ] = useState({
@@ -31,7 +31,7 @@ export default function Login({ user, setUser, setUserName }) {
 
       setToken('access-token', data.access)
       setToken('refresh-token', data.refresh)
-      setMessage('Login was successful')
+      setMessage(`You are logged in as ${userName}`)
     } catch (error) {
       console.log(error)
       setMessage(error.response.data.detail)
@@ -45,8 +45,10 @@ export default function Login({ user, setUser, setUserName }) {
       <br />
       <input type="password" name="password" placeholder="password" value={FormData.password} onChange={handleChange}></input>
       <br />
-      { message && <p> {message} {<Link to={`/analyze/${user}/`}> analyze portfolio </Link>}</p>}
-      <input type = "submit" value= "Submit"></input>
+      
+      <input className="input-submit" type = "submit" value= "Submit"></input>
+
+      { message && <p className="message-to-user"> {message} <br/> {<Link to={`/analyze/${user}/`}> analyze portfolio </Link>}</p>}
     </form>
   )
 }

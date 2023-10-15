@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom'
 export default function NavBar( { user, userName } ) {
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
+    <Navbar expand="lg" className="bg-body-tertiary shadow-lg">
+      <Container className='navbar'>
         <Nav className="me-auto">
           <Link to="/login/">Login</Link>
           <Link to="/register/">Register</Link>

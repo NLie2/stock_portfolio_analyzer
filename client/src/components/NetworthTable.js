@@ -1,8 +1,8 @@
 export default function NetworthTable( { networths } ){
   return (
-    <>
-      {networths && <div className='networths'>
-        <h1> Networths </h1>
+    <div className="shadow-lg table-container">
+      <h1> Networths </h1>
+      {networths && <div className='table'>
         <table>
           <thead>
             <tr>
@@ -22,7 +22,6 @@ export default function NetworthTable( { networths } ){
           </tbody>
         </table>
       </div> }
-      
-    </>
+    </div>
   )
 }

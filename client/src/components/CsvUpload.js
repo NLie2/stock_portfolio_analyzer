@@ -9,8 +9,7 @@ import JSONPretty from 'react-json-pretty'
 
 import Table from './PricesTable'
 
-export default function CsvUpload( { formData, setFormData, setTradeData }){
-  const [ message, setMessage ] = useState('')
+export default function CsvUpload( { formData, setFormData, setTradeData, message, setMessage }){
   const [ owner, setOwner ] = useState('')
 
   const data = new FormData()
@@ -36,11 +35,10 @@ export default function CsvUpload( { formData, setFormData, setTradeData }){
     e.preventDefault()
     try { 
       console.log(formData)
+      setMessage( 'CSV uploaded' )
       const { data }  = await axiosAuth.post('/api/tradetables/', formData )
       if (data) {
         console.log('response...', data)
-        
-        setMessage( 'CSV uploaded' )
         setTradeData( data )
       } else {
         setMessage('something went wrong')
@@ -54,17 +52,19 @@ export default function CsvUpload( { formData, setFormData, setTradeData }){
   }
 
   return (
-    <>
+    <div className="shadow-lg">
+      <h3> Upload new table ... </h3>
       <form onSubmit={handleSubmit}> 
         {/* This should be a select later, so that the user can select between all existing tables*/}
         <input type="string" name="owner" placeholder="owner"  onChange={ (e) => setOwner(e.target.value) }></input>
 
-        <input type="file" name="trades_table" placeholder="trades_table"  onChange={handleUpload}></input>
+        <input className="input-upload" type="file" name="trades_table" placeholder="trades_table"  onChange={handleUpload}></input>
         <br />
-        { message && message }
-        <input type = "submit" value= "Submit"></input>
+        <input className="input-submit" type = "submit" value= "Submit"></input>
+
+        { message && <p className="message-to-user"> {message} </p>}
       </form>
       
-    </>
+    </div>
   )
 }

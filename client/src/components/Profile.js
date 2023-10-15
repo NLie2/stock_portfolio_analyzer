@@ -48,20 +48,24 @@ export default function Profile( { user } ) {
         networths={networths}
       />
       
-      {owners && owners.map((owner, idx) => (
-        <div key={idx}>
-          <button onClick={handleClick} value={owner}>generate graph for {owner}&apos; s portfolio </button>
-        </div>
-      ))}
+      <div className="owner-buttons">
+        {owners && owners.map((owner, idx) => (
+          <div key={idx}>
+            <button onClick={handleClick} value={owner}>generate graph {owner} </button>
+          </div>
+        ))}
+      </div>
       
-      {
-        (networths && ownerToAnalyze) &&    <LineChart 
-          chartLabels = {labels}
-          chartData={chartData}
-          graphLabel={ownerToAnalyze}
-          color={'orange'}
-        />
-      }
+      <div className="networth-graph shadow-lg">
+        {
+          (networths && ownerToAnalyze) &&    <LineChart 
+            chartLabels = {labels}
+            chartData={chartData}
+            graphLabel={ownerToAnalyze}
+            color={'orange'}
+          />
+        }
+      </div>
 
     </>
   )

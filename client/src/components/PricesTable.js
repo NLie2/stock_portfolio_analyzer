@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function PricesTable( { title, pricesOrDividents }){
+export default function PricesTable( { pricesOrDividents }){
   const [ counter, setCounter ] = useState(0)
   const [ colnames, setColnames ] = useState('')
   useEffect(() => {
@@ -8,9 +8,8 @@ export default function PricesTable( { title, pricesOrDividents }){
   }, [])
 
   return (
-    <div >
-      <h2> {title} </h2>
-      <table>
+    <div className="table">
+      <table > 
         <thead>
           <tr>
             <th>Ticker</th>

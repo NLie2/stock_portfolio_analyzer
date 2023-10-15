@@ -39,8 +39,10 @@ export default function Login() {
       <br />
       <input type="password" name="password_confirmation" placeholder="confirm password" value={FormData.password_confirmation} onChange={handleChange}></input>
       <br />
-      { message && <p> {message} <Link to={'/login'}> Login </Link></p>}
-      <input type = "submit" value= "Submit"></input>
+      
+      <input className="input-submit" type = "submit" value= "Submit"></input>
+
+      { message && <p> {message} <br/> <Link to={'/login'}> Login </Link></p>}
     </form>
   )
 }
