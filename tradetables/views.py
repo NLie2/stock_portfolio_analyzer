@@ -52,7 +52,7 @@ class TradetableListView(TradeTableView, CreateAPIView):
     # ! calculate_networth here 
     # input: price table, output, networth table 
 
-    # Next step: save the networth table as a model 
+    # Next step: save the networth table as a model ‚
 
 
     serialized_tradetable = TradetableSerializer(data=trade_table)
