@@ -49,6 +49,11 @@ class TradetableListView(TradeTableView, CreateAPIView):
     # dividents = get_dividents(date_from=date_from, tickers=tickers)
     prices = get_prices(date_from=date_from, tickers=tickers)
 
+    # ! calculate_networth here 
+    # input: price table, output, networth table 
+
+    # Next step: save the networth table as a model 
+
 
     serialized_tradetable = TradetableSerializer(data=trade_table)
 
@@ -73,6 +78,7 @@ class TradetableListView(TradeTableView, CreateAPIView):
       # ! Do not return dividents
       # return Response({'prices': prices, 'dividents': dividents, 'trades': trades})
 
+      # ! Also return networth here 
       return Response({'prices': prices, 'trades': trades})
     else:
       return Response('serialized trade table is not valid')

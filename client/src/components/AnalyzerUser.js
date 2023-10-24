@@ -50,6 +50,8 @@ export default function AnalyzerUser() {
                 pricesOrDividents={tradeData.dividents}
               />
             </div>  */}
+            
+            {/* ! ADD TRADETABLE DISPLAY */}
           </div> 
           : message &&
           <div className="m-3 d-flex justify-content-center">

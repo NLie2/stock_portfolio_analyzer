@@ -59,3 +59,4 @@ def get_dividents(date_from, tickers, date_to= date.today()):
     # Convert the updated dictionary back to a JSON string
     return dividents
 
+## ! Write a function that retrieves the currency exchange rates for every day since starting date
