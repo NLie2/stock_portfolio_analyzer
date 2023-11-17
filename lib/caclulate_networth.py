@@ -9,27 +9,15 @@ with open('lib/files/ticker_by_symbol.json', 'r') as json_file:
     ticker_name_pairs = json.load(json_file)
   
 
-def calculate_eur_values(row):
+def calculate_eur_values(row, exchange_rate, close = 'close'):
     #converts one row to euro 
-    close = row['close']
-    adjusted_close = row['adjusted_close']
-    fx_close = row['close']
+    #if you prefer using adjusted close call function with close='adjusted_close'
+    
+    price_eur = row['close'] / exchange_rate[row['date']][close]
 
-    if pd.notna(fx_close):
-        close_eur = close / fx_close / 100 if 'GBP' in row['currencyPair'] else close / fx_close
-        adjusted_close_eur = adjusted_close / fx_close / 100 if 'GBP' in row['currencyPair'] else adjusted_close / fx_close
-    else:
-        close_eur = close / 100 if 'GBP' in row['currencyPair'] else close
-        adjusted_close_eur = adjusted_close / 100 if 'GBP' in row['currencyPair'] else adjusted_close
+    return price_eur 
 
-    return pd.Series({
-        'date': row['date'],
-        'close_eur': close_eur,
-        'adjusted_close_eur': adjusted_close_eur,
-        'name': row['name']
-    })
-
-def convertToEuro(trades, prices ):
+def convertToEuro(trades, prices, exchange_rates ):
   # Get TickerCurrency pairs
   
   # Create a list to store the TickersCurrencyPair objects
@@ -57,11 +45,14 @@ def convertToEuro(trades, prices ):
 
     for price in prices_eur[ticker]: 
       price['currencyPair'] = ticker_currency_pair['currencyPair']
+      if price['currencyPair'] != '-': 
+        print(price['currencyPair'])
+        exchange_rate_currencyPair = exchange_rates[price['currencyPair']]
 
-      # Convert each row to euro 
-      price['date', 'close_eur', 'adjusted_close_eur', 'Name'] = calculate_eur_values(price)
-  # input: prices table
-  # output: prices table in euro 
+        # Convert each row to euro 
+
+        exchangedprice = calculate_eur_values(price, exchange_rate_currencyPair)
+        price['price_eur'] = exchangedprice
 
   return prices_eur
 

@@ -68,8 +68,10 @@ def get_exchange_rates(date_from, currency_pairs, date_to= date.today()):
 
     # remove unwanted keys with dict comprehnsion
     keys_to_remove = ['open', 'high', 'low', 'volume']
-    exchange_rates[currency_pair]= [{key: value for key, value in response_price.items() if key not in keys_to_remove} for response_price in response_prices]
+    # exchange_rates[currency_pair]= [{key: value for key, value in response_price.items() if key not in keys_to_remove} for response_price in response_prices]
+    exchange_rates[currency_pair] = {response_price['date']: {key: value for key, value in response_price.items() if key not in keys_to_remove} for response_price in response_prices}
     print('getting exchange rates...', currency_pair)
+  print(exchange_rates)
 
   # Convert the updated dictionary back to a JSON string
   return exchange_rates
