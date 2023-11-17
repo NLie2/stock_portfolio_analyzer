@@ -143,12 +143,10 @@ class TradetableListView(TradeTableView, CreateAPIView):
     if serialized_tradetable.is_valid():
 
       serialized_tradetable.save(user=self.request.user)
-      print("All trades... ", trades)
 
       #map trades to include the serialized table id
       for trade in trades: 
         trade['tradeTable'] = serialized_tradetable.data['id']
-        print("INDIVIDUAL TRADE...", trade)
         serialized_trade = TradeSerializer(data=trade)
         print(serialized_trade.is_valid())
 
