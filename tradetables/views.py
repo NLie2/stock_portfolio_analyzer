@@ -28,7 +28,7 @@ from rest_framework.response import Response
 
 #Files and assets
 from lib.eod_request import get_prices, get_dividents, get_exchange_rates
-from lib.caclulate_networth import convertToEuro
+from lib.caclulate_networth import convertToEuro, addMissingDates
 
 
 with open('lib/files/currency_pairs.json', 'r') as json_file:
@@ -131,9 +131,12 @@ class TradetableListView(TradeTableView, CreateAPIView):
     # Get exchange rates
     exchange_rates = get_exchange_rates(date_from=date_from, currency_pairs=currency_pairs)
 
-    # ! calculate_networth here 
     # input: price table, output, networth table 
     prices_eur = convertToEuro(trades, prices, exchange_rates)
+
+    # # add missing rows
+    # ! Next step
+    prices_eur_full = addMissingDates(prices_eur)
 
     # Next step: save the networth table as a model ‚
 
@@ -160,7 +163,7 @@ class TradetableListView(TradeTableView, CreateAPIView):
       # return Response({'prices': prices, 'dividents': dividents, 'trades': trades})
 
       # ! Also return networth here 
-      return Response({'prices': prices, 'trades': trades, 'prices_eur': prices_eur, 'exchange_rates': exchange_rates})
+      return Response({'prices': prices, 'trades': trades, 'prices_eur': prices_eur, 'exchange_rates': exchange_rates, 'prices_eur_full': prices_eur_full})
     else:
       return Response('serialized trade table is not valid')
 
