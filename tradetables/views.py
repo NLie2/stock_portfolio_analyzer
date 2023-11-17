@@ -1,3 +1,8 @@
+# packages
+import json
+
+# ret framework
+
 from rest_framework.generics import  (
   GenericAPIView, 
   RetrieveUpdateDestroyAPIView, 
@@ -21,7 +26,13 @@ from lib.permissions import IsOwnerOrReadOnly, IsOwner
 # Rest Framework
 from rest_framework.response import Response
 
-from lib.eod_request import get_prices, get_dividents
+#Files and assets
+from lib.eod_request import get_prices, get_dividents, get_exchange_rates
+from lib.caclulate_networth import convertToEuro
+
+
+with open('lib/files/currency_pairs.json', 'r') as json_file:
+    currency_pairs = json.load(json_file)
 
 class TradeTableView(GenericAPIView ):
   queryset=Tradetable.objects.all()
@@ -49,10 +60,21 @@ class TradetableListView(TradeTableView, CreateAPIView):
     # dividents = get_dividents(date_from=date_from, tickers=tickers)
     prices = get_prices(date_from=date_from, tickers=tickers)
 
+    # Get currency exchange rates
+    currency_exchange_rates = get_exchange_rates( date_from=date_from, currency_pairs= currency_pairs )
+    # print(currency_exchange_rates)
+
     # ! calculate_networth here 
+    prices_eur = convertToEuro(trades, prices)
+    print("PRICES EUR", convertToEuro(trades, prices))
+    print("PRICES EUR")
+    print("PRICES EUR")
+
     # input: price table, output, networth table 
 
     # Next step: save the networth table as a model ‚
+
+    
 
 
     serialized_tradetable = TradetableSerializer(data=trade_table)
@@ -60,14 +82,14 @@ class TradetableListView(TradeTableView, CreateAPIView):
     if serialized_tradetable.is_valid():
 
       serialized_tradetable.save(user=self.request.user)
-      print("All trades... ", trades)
+      # print("All trades... ", trades)
 
       #map trades to include the serialized table id
       for trade in trades: 
         trade['tradeTable'] = serialized_tradetable.data['id']
-        print("INDIVIDUAL TRADE...", trade)
+        # print("INDIVIDUAL TRADE...", trade)
         serialized_trade = TradeSerializer(data=trade)
-        print(serialized_trade.is_valid())
+        # print(serialized_trade.is_valid())
 
         if serialized_trade.is_valid():
           serialized_trade.save()
@@ -79,7 +101,7 @@ class TradetableListView(TradeTableView, CreateAPIView):
       # return Response({'prices': prices, 'dividents': dividents, 'trades': trades})
 
       # ! Also return networth here 
-      return Response({'prices': prices, 'trades': trades})
+      return Response({'prices': prices, 'trades': trades, 'exchang_rates': currency_exchange_rates, 'prices_eur': prices_eur})
     else:
       return Response('serialized trade table is not valid')
 

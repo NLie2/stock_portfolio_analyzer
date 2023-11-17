@@ -9,25 +9,23 @@ export default function PricesTable( { pricesOrDividents }){
 
   return (
     <div className="table">
-      <table > 
+      <table>
         <thead>
           <tr>
             <th>Ticker</th>
-            {colnames && colnames.map((colname, index) => (
-              <th key={index}>{colname}</th>
+            {Object.keys(pricesOrDividents[Object.keys(pricesOrDividents)[0]][0]).map((key) => (
+              <th key={key}>{key}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {Object.entries(pricesOrDividents).map(([symbol, data]) => (
-            data.map((priceOrDivident, index) => (
+          {Object.entries(pricesOrDividents).map(([ticker, data]) => (
+            data.map((entry, index) => (
               <tr key={index}>
-                {Object.keys(pricesOrDividents).map( (ticker, ind) => <td key={ind}>{ticker}</td>)}
-                {colnames &&
-                  colnames.map((colname, ind) => (
-                    
-                    <td key={ind}>{priceOrDivident[colname]}</td>
-                  ))}
+                <td>{ticker}</td>
+                {Object.values(entry).map((value, index) => (
+                  <td key={index}>{value}</td>
+                ))}
               </tr>
             ))
           ))}

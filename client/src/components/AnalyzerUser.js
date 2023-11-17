@@ -19,7 +19,7 @@ export default function AnalyzerUser() {
 
   return (
     <div className='analyzer-container'>
-
+      <a className= "file-template" href={'../assets/TestBuchführung.csv'} download> Download File Template </a>
       < CsvUpload
         formData={formData}
         setFormData={setFormData}
@@ -37,6 +37,28 @@ export default function AnalyzerUser() {
       <div className="table-container shadow-lg">
         { tradeData ?
           <div>
+            <div>
+              <h2> Trades </h2>
+              <table>
+                <thead>
+                  <tr>
+                    {Object.keys(tradeData.trades[0]).map((key) => (
+                      <th key={key}>{key}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {tradeData.trades.map((trade, index) => (
+                    <tr key={index}>
+                      {Object.keys(trade).map((key) => (
+                        <td key={key}>{trade[key]}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div> 
+
             <div >
               <h2> Prices </h2>
               <PricesTable 
@@ -44,14 +66,8 @@ export default function AnalyzerUser() {
               />
             </div>
             {/* ! Do not return dividents */}
-            {/* <div>
-              <h2> Dividents </h2>
-              <PricesTable 
-                pricesOrDividents={tradeData.dividents}
-              />
-            </div>  */}
+
             
-            {/* ! ADD TRADETABLE DISPLAY */}
           </div> 
           : message &&
           <div className="m-3 d-flex justify-content-center">

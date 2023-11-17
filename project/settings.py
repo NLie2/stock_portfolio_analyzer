@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import environ
+# import environ
 from pathlib import Path
-import os
-import django_on_heroku 
+# import os
+# import django_on_heroku 
 
-env = environ.Env()
-environ.Env.read_env()
+# env = environ.Env()
+# environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+# SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-j$&ih!02)n7e274np79s-h36j9sgcbe+u&-_&imc^72w3s0i3!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -72,11 +73,27 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'project.urls'
 
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         # 'DIRS': [os.path.join(BASE_DIR, 'client')] #Look, we have added the root folder of frontend here
+        
+#         'DIRS': [],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#         },
+#     },
+# ]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'client')] #Look, we have added the root folder of frontend here
-        ,
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,18 +113,25 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': env('DATABASE_NAME'),
+#     'USER': env('DATABASE_USER'),
+#     'PASSWORD': env('DATABASE_PASSWORD'),
+#     'HOST': env('DATABASE_HOST'),
+#     'PORT': '5432',
+#     'OPTIONS': {'sslmode': 'require'},
+#   }
+# }
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': env('DATABASE_NAME'),
-    'USER': env('DATABASE_USER'),
-    'PASSWORD': env('DATABASE_PASSWORD'),
-    'HOST': env('DATABASE_HOST'),
-    'PORT': '5432',
-    'OPTIONS': {'sslmode': 'require'},
-  }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'stock_portfolio_analyzer',
+        'HOST': 'localhost',
+        'PORT': 5432
+    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -150,8 +174,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'client', "build", "static"),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'client', "build", "static"),
+# )
 
-django_on_heroku.settings(locals()) 
+# django_on_heroku.settings(locals()) 
