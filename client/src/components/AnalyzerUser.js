@@ -6,6 +6,8 @@ import CsvUpload from './CsvUpload'
 import CsvUploadRow from './CsvUploadRow'
 
 import PricesTable from './PricesTable'
+import NetworthTable from './NetworthTable'
+import LineChart from './LineChart'
 
 
 export default function AnalyzerUser() {
@@ -66,6 +68,33 @@ export default function AnalyzerUser() {
               />
             </div>
             {/* ! Do not return dividents */}
+
+            <div>
+              <NetworthTable 
+                networths={tradeData.networths}
+              />
+              
+              {/* <div className="owner-buttons">
+                {owners && owners.map((owner, idx) => (
+                  <div key={idx}>
+                    <button onClick={handleClick} value={owner}>generate graph {owner} </button>
+                  </div>
+                ))}
+              </div> */}
+              
+              <div className="networth-graph shadow-lg">
+                <LineChart 
+                  chartLabels = {''}
+                  chartData={tradeData.networth}
+                  graphLabel={'your'}
+                  color={'orange'}
+                />
+
+              </div>
+              {/* <PricesTable 
+                pricesOrDividents={tradeData.dividents}
+              /> */}
+            </div>
 
             
           </div> 

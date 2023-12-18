@@ -89,12 +89,21 @@ def convertToEuro(trades, prices, exchange_rates ):
   
   prices_eur = prices.copy()
 
+  # Dropping adjusted close because F said its not necessary for MVP
+  for price in prices_eur[ticker]: 
+      del price['adjusted_close']
+  
   # merge currency pair from trade to the prices_eur table
   for ticker_currency_pair in TickersCurrencyPairs: 
     ticker = ticker_currency_pair['ticker']
     name = ticker_currency_pair['name']
 
     for price in prices_eur[ticker]: 
+      # Get trades where trades['ticker'] == ticker
+      # ! this is not ideal. use pandas. 
+      trades_for_ticker = [trade for trade in trades if trade['ticker'] == ticker][0]
+      print(trades_for_ticker)
+
       price['currencyPair'] = ticker_currency_pair['currencyPair']
       if price['currencyPair'] != '-': 
         exchange_rate_currencyPair = exchange_rates[price['currencyPair']]
@@ -103,17 +112,28 @@ def convertToEuro(trades, prices, exchange_rates ):
         exchangedprice = calculate_eur_values(price, exchange_rate_currencyPair)
 
         price['price_eur'] = exchangedprice
-      
+      price['shares'] = trades_for_ticker['shares']  
 
-
+    
   return prices_eur
 
 
 
 # ! write a function to calculate the networth table 
-def get_networth(): 
+def get_networth( prices_eur ): 
   # input: prices table without missing dates, and all in one currency
   # output: networth table 
+
+  networth = {}
+
+  for ticker in prices_eur:
+    for price in prices_eur[ticker]:
+      if price['date'] in networth:
+        #add price_eur to networth[date]
+        networth[price['date']] += price['close'] * price['shares']
+      else:
+        #create new object in networth[date] with price_eur
+        networth[price['date']] = price['close'] * price['shares']
 
   # on every day, how many pieces of this stock did you have. 
   # on  every day how much were my earnings worth (cum shares * value)
@@ -123,5 +143,5 @@ def get_networth():
   # If a stock was sold on that day, it does not appear in the networth of that day. 
   # Use unadjusted close
 
-  pass
+  return networth
 

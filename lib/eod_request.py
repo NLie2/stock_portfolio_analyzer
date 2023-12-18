@@ -62,7 +62,7 @@ def get_dividents(date_from, tickers, date_to= date.today()):
 ## ! Write a function that retrieves the currency exchange rates for every day since starting date
 def get_exchange_rates(date_from, currency_pairs, date_to= date.today()):
   exchange_rates = {}
-  for currency_pair in currency_pairs.values():
+  for currency_pair in currency_pairs:
     #parse response into a python dictionary
     response_prices = requests.get(f"https://eodhd.com/api/eod/{currency_pair}?fmt=json&from={date_from}&to={date_to}&period=d&order=a&api_token={API_KEY}").json()
 
