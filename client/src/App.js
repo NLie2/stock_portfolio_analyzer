@@ -41,7 +41,7 @@ export default function App() {
             <Route path='/profile/:userid/' element= {<Profile
               user={user}
             /> } />
-            <Route path='/analyze/guest/' element= { <AnalyzerGuest /> } />
+            <Route path='/analyze/guest/' element= { <AnalyzerUser /> } />
             <Route path='/analyze/:userid/' element= {<AnalyzerUser /> } />
 
           </Routes>

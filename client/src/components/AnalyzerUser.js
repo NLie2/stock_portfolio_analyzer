@@ -20,8 +20,8 @@ export default function AnalyzerUser() {
 
 
   return (
-    <div className='analyzer-container'>
-      <a className= "file-template" href={'../assets/TestBuchführung.csv'} download> Download File Template </a>
+    <div className='analyzer-container'>      
+      <a className= "file-template" href={process.env.PUBLIC_URL + '/TestBuchführung_example.csv'} download='TestBuchführung.csv'> Download File Template </a>
       < CsvUpload
         formData={formData}
         setFormData={setFormData}
