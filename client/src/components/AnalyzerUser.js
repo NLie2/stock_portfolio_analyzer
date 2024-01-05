@@ -27,7 +27,7 @@ export default function AnalyzerUser() {
         <li> 3 upload your file and hit the SUBMIT button </li>
       </ul>
 
-      <a href="{% static 'TestBuchführung_example.csv' %}" download='TestBuchführung.csv'>Download File Template</a>
+      <a className="file-template" href={`${process.env.PUBLIC_URL}/TestBuchführung_example.csv`} download='TestBuchführung.csv'> Download File Template </a>     
       < CsvUpload
         formData={formData}
         setFormData={setFormData}
