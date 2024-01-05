@@ -20,7 +20,13 @@ export default function AnalyzerUser() {
 
 
   return (
-    <div className='analyzer-container'>      
+    <div className='analyzer-container'>  
+      <ul>
+        <li> 1 Download the file template </li>
+        <li> 2 (optional) add your own entries </li>
+        <li> 3 upload your file and hit the SUBMIT button </li>
+      </ul>
+
       <a className= "file-template" href={process.env.PUBLIC_URL + '/TestBuchführung_example.csv'} download='TestBuchführung.csv'> Download File Template </a>
       < CsvUpload
         formData={formData}
