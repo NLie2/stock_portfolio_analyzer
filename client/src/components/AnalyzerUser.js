@@ -28,7 +28,7 @@ export default function AnalyzerUser() {
         <li> 3 upload your file and hit the SUBMIT button </li>
       </ul>
 
-      /<a className="file-template" href={`${window.location.origin}/TestBuchführung_example.csv`} download='TestBuchführung.csv'> Download File Template </a>     
+      {/* <a className="file-template" href={`${window.location.origin}/TestBuchführung_example.csv`} download='TestBuchführung.csv'> Download File Template </a>      */}
       <TestBuchführung />
       < CsvUpload
         formData={formData}
