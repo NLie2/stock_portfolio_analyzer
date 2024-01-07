@@ -23,9 +23,10 @@ export default function AnalyzerUser() {
   return (
     <div className='analyzer-container'>  
       <ul>
-        <li> 1 Download the file template </li>
-        <li> 2 (optional) add your own entries </li>
-        <li> 3 upload your file and hit the SUBMIT button </li>
+        <li> 1 sign in to the app with exampleuser = nathaliekirch2, password = pass </li>
+        <li> 2 Download the file template </li>
+        <li> 3 (optional) add your own entries </li>
+        <li> 4 upload your file and hit the SUBMIT button </li>
       </ul>
 
       {/* <a className="file-template" href={`${window.location.origin}/TestBuchführung_example.csv`} download='TestBuchführung.csv'> Download File Template </a>      */}

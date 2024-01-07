@@ -9,9 +9,11 @@ axiosAuth.interceptors.request.use( async (config) => {
   if (!isTokenValid('access-token')) {
     if (isTokenValid('refresh-token')) {
       //Make an request to get new access token
-      const { data } = await axios.post('/api/auth/refresh/', {
+      const r = await axios.post('/api/auth/refresh/', {
         refresh: getToken('refresh-token'), 
       })
+      console.log(r)
+      const data = r.data
       //save token to token variable
       setToken('access-token', data.access)
     } else { 
